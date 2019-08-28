@@ -1,0 +1,19 @@
+{
+  "name": "enterprise-credit",
+  "version": "1.0.0",
+  "description": "My incredible Nuxt.js project",
+  "author": "guhongxin",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.1.10",
+    "axios": "^0.19.0",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {}
+}
