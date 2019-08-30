@@ -53,5 +53,8 @@ export default {
   },
   router: {
     middleware: 'test'
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://company.yifanti.com'
   }
 }

@@ -24,23 +24,25 @@
             />
           </a-form-item>
           <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
-            <a-button type="primary" @click="seachClick">
+            <a-button type="primary" @click="seachClick" :loading="btnloading">
               查找
             </a-button>
           </a-form-item>
         </a-form>
       </div>
-      <div class="company-infor"></div>
+      <div class="company-infor">
+      </div>
       </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import Ajax from '@/assets/utils/ajax.js';
 export default {
   data() {
     return {
-      form: this.$form.createForm(this)
+      form: this.$form.createForm(this),
+      btnloading: false
     }
   },
   head () {
@@ -56,15 +58,29 @@ export default {
     seachClick() {
        this.form.validateFields((err, values) => {
         if (!err) {
+          this.btnloading = true
           this.getCompany(values)
         }
       })
     },
     getCompany(params) {
-      axios.get('http://company.yifanti.com/', {
+      Ajax.request({
+        url: 'http://company.yifanti.com',
+        methods: 'GET',
         params: params
       }).then(res => {
         console.log('kkkk', res.data)
+        this.btnloading = false
+        let data = res.data.data
+        let basicInfo = data.basicInfo
+        let html = ''
+        for (let i in basicInfo) {
+          html += `<p style="margin-bottom:10px;"><span>${i}:</span><span style="margin-left:5px;">${basicInfo[i]}</span></p>`
+        }
+        let companyinforDom = document.querySelector('.company-infor')
+        companyinforDom.innerHTML = html
+      }).catch(err => {
+        this.btnloading = false
       })
     }
   }
@@ -84,5 +100,6 @@ export default {
   margin: 20px auto 0px;
   border: 1px solid #dddddd;
   border-radius: 4px;
+  padding: 10px;
 }
 </style>
