@@ -59,7 +59,8 @@ export default {
        this.form.validateFields((err, values) => {
         if (!err) {
           this.btnloading = true
-          this.getCompany(values)
+          let obj = Object.assign({}, values,  { sample: 1 })
+          this.getCompany(obj)
         }
       })
     },
@@ -69,17 +70,11 @@ export default {
         methods: 'GET',
         params: params
       }).then(res => {
-        console.log('kkkk', res.data)
         this.btnloading = false
-        let data = res.data.data
-        let basicInfo = data.basicInfo
-        let html = ''
-        for (let i in basicInfo) {
-          html += `<p style="margin-bottom:10px;"><span>${i}:</span><span style="margin-left:5px;">${basicInfo[i]}</span></p>`
-        }
-        let companyinforDom = document.querySelector('.company-infor')
-        companyinforDom.innerHTML = html
-      }).catch(err => {
+        let data = JSON.stringify(res.data)
+        var jdata = JSON.stringify(JSON.parse(data), null, 4)
+        console.log('jdata',jdata)
+        document.querySelector('.company-infor').innerHTML = `<pre>${jdata}</pre>`
         this.btnloading = false
       })
     }
