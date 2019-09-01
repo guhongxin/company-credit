@@ -1,4 +1,6 @@
-
+require('dotenv').config()
+console.log('process.env.BASE_URL', process.env.BASE_URL)
+console.log('process.env.APP_ENV', process.env.APP_ENV)
 export default {
   mode: 'universal',
   /*
@@ -40,6 +42,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Build configuration
@@ -49,7 +52,7 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
   },
   router: {
     middleware: 'test'

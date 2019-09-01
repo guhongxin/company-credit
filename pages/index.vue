@@ -32,7 +32,8 @@
       </div>
       <div class="company-infor">
       </div>
-      </div>
+      <img  v-if="imgsrc.length>0" :src="imgsrc" style="width:100%;margin-top:20px"/>
+    </div>
   </div>
 </template>
 
@@ -42,7 +43,8 @@ export default {
   data() {
     return {
       form: this.$form.createForm(this),
-      btnloading: false
+      btnloading: false,
+      imgsrc: ''
     }
   },
   head () {
@@ -59,19 +61,26 @@ export default {
        this.form.validateFields((err, values) => {
         if (!err) {
           this.btnloading = true
-          let obj = Object.assign({}, values,  { sample: 1 })
+          let  obj = {
+            keyword: values.enterprise,
+            type: values.type
+          }
+          if (process.env.APP_ENV === 'development') {
+            obj.sample = 1
+          } 
           this.getCompany(obj)
         }
       })
     },
     getCompany(params) {
       Ajax.request({
-        url: 'http://company.yifanti.com',
+        url: 'company',
         methods: 'GET',
         params: params
       }).then(res => {
         this.btnloading = false
         let data = JSON.stringify(res.data)
+        this.imgsrc = res.data.data.image || ''
         var jdata = JSON.stringify(JSON.parse(data), null, 4)
         console.log('jdata',jdata)
         document.querySelector('.company-infor').innerHTML = `<pre>${jdata}</pre>`
