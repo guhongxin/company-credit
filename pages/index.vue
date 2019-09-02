@@ -65,7 +65,7 @@ export default {
             keyword: values.enterprise,
             type: values.type
           }
-          if (process.env.APP_ENV === 'development') {
+          if (process.env.NODE_ENV === 'development') {
             obj.sample = 1
           } 
           this.getCompany(obj)

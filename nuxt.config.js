@@ -1,6 +1,4 @@
 require('dotenv').config()
-console.log('process.env.BASE_URL', process.env.BASE_URL)
-console.log('process.env.APP_ENV', process.env.APP_ENV)
 export default {
   mode: 'universal',
   /*
@@ -41,9 +39,8 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    '@nuxtjs/dotenv'
-  ],
+  modules: [],
+  dev: ['@nuxtjs/dotenv'],
   /*
   ** Build configuration
   */

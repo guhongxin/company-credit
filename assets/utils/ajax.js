@@ -2,7 +2,6 @@ import axios from 'axios'
 import {
   message
 } from 'ant-design-vue'
-  
 const server = axios.create({
   baseURL: process.env.baseUrl
   // timeout: 30000

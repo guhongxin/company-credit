@@ -5,7 +5,7 @@
   "author": "guhongxin",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env NODE_ENV=development nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate"
@@ -17,6 +17,7 @@
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "babel-plugin-component": "^1.1.1"
+    "babel-plugin-component": "^1.1.1",
+    "cross-env": "^5.2.1"
   }
 }
