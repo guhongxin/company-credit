@@ -3,7 +3,7 @@
     <div class="container-content">
       <div class="seach-area">
         <a-form :form="form" layout="inline">
-          <a-form-item label="公司名称" 
+          <a-form-item label="公司名称3" 
             :label-col="{ span: 6 }" :wrapper-col="{ span: 18}"
             style="width: 40%;"
             >
